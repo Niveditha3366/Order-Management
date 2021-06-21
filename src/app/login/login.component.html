@@ -1,0 +1,46 @@
+<div *ngIf="login" class="container">
+
+    <form class="form-signin" [formGroup]="logInForm" (ngSubmit)="onSubmit(logInForm.value)" novalidate>
+    
+      <h2 class="form-signin-heading">Please Log in</h2>
+      
+      <div *ngIf="invalidLogin" class = "alert alert-danger">
+       Invalid Username/Password Combination
+      </div>
+      
+      <div class="form-group"> 
+      <label for="username" class="sr-only">Email address</label>
+      <input type="email" id="username" class="form-control" 
+      formControlName="username"  placeholder="UserName" >
+      <small class="form-text text-muted" 
+      *ngIf="logInForm.controls.username.touched && logInForm.controls.username.errors?.required">
+        Please enter email address.!
+     </small>
+    <small class="form-text text-muted"
+    *ngIf="logInForm.controls.username.touched && logInForm.controls.username.errors?.email">
+      Email address not well formed.!
+     </small>
+      </div>
+      <div class="form-group">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" 
+      formControlName="password" placeholder="Password">
+      <small class="form-text text-muted" 
+      *ngIf="logInForm.controls.password.touched && logInForm.controls.password.errors?.required">
+        Please enter password..!
+     </small>
+      </div>
+      <div >
+        <div class="row pb-2 pt-1">
+          <span class="col-2" > <input type="checkbox" style="zoom:0.5" id="rememberMe" name="rememberMe"class="form-control" 
+            formControlName="rememberMe"/></span>
+            <span class="col-10"><label >Remember Me
+            </label></span>
+        </div> 
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </div>
+  <div *ngIf="table">
+  <app-table></app-table>
+ </div>
